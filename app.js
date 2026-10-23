@@ -12,16 +12,16 @@
   ];
   const hasSupabase = Boolean(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase);
   const db = hasSupabase ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey) : null;
-  let products = [...demoProducts], category='Todos', cart=JSON.parse(localStorage.getItem('kevin-store-cart')||'[]'), editingId=null;
+  let products = hasSupabase ? [] : [...demoProducts], catalogLoadError=false, category='Todos', cart=JSON.parse(localStorage.getItem('kevin-store-cart')||'[]'), editingId=null;
   const $ = s => document.querySelector(s), money = n => new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(Number(n)||0);
   $('#year').textContent = new Date().getFullYear();
-  async function loadProducts(){ if(!db)return; const {data,error}=await db.from('products').select('*').eq('active',true).order('created_at',{ascending:false}); if(!error && data) products=data; else console.warn('No se pudo cargar el catálogo de Supabase',error); render(); }
+  async function loadProducts(){ if(!db)return; const {data,error}=await db.from('products').select('*').eq('active',true).order('created_at',{ascending:false}); if(error){catalogLoadError=true;products=[];console.warn('No se pudo cargar el catálogo de Supabase',error);}else{catalogLoadError=false;products=data||[];} render(); }
   function render(){
     const q=$('#search-input').value.trim().toLowerCase(), sort=$('#sort-select').value;
     let list=products.filter(p=>p.active!==false&&(category==='Todos'||p.category===category)&&(`${p.name} ${p.category} ${p.description||''}`.toLowerCase().includes(q)));
     if(sort==='price-asc')list.sort((a,b)=>a.price-b.price); if(sort==='price-desc')list.sort((a,b)=>b.price-a.price);
     $('#product-grid').innerHTML=list.map(p=>`<article class="product-card"><div class="product-image"><img src="${esc(p.image_url||'')}" alt="${esc(p.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=75'"><span class="badge" ${p.badge?'':'hidden'}>${esc(p.badge||'')}</span><button class="quick-add" data-add="${esc(p.id)}" aria-label="Agregar ${esc(p.name)}">+</button></div><div class="product-info"><div class="product-meta"><span>${esc(p.category)}</span><span>KEVIN STORE</span></div><h3 class="product-title">${esc(p.name)}</h3><div class="price-row">${money(p.price)} ${p.old_price?`<span class="old-price">${money(p.old_price)}</span>`:''}</div></div></article>`).join('');
-    $('#empty-state').hidden=list.length>0;
+    $('#empty-state').textContent=catalogLoadError?'No pudimos cargar el catálogo. Intenta recargar la página.':products.length===0?'Pronto publicaremos nuestros productos.':'No encontramos productos con esos filtros.'; $('#empty-state').hidden=list.length>0;
     document.querySelectorAll('.filter').forEach(b=>{const c=b.dataset.category,count=c==='Todos'?products.filter(p=>p.active!==false).length:products.filter(p=>p.category===c&&p.active!==false).length;b.querySelector('span').textContent=String(count).padStart(2,'0');});
   }
   function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
