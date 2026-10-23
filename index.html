@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261023-2">
+  <link rel="stylesheet" href="styles.css?v=20261023-3">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
-  <script defer src="app.js?v=20261023-5"></script>
+  <script defer src="app.js?v=20261023-6"></script>
 </head>
 <body>
   <div class="announcement">ENVÍOS A TODO COLOMBIA <span>·</span> PEDIDOS DIRECTOS POR WHATSAPP</div>
@@ -34,8 +34,10 @@
   <div class="overlay" id="overlay"></div>
   <aside class="drawer" id="cart-drawer" aria-label="Tu bolsa de compras" aria-hidden="true"><div class="drawer-head"><div><p class="eyebrow">TU SELECCIÓN</p><h2>Tu bolsa <span id="drawer-count">(0)</span></h2></div><button class="close-button" data-close aria-label="Cerrar">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-bottom"><div class="total-row"><span>Subtotal</span><b id="cart-total">$0</b></div><p class="small-note">El envío se coordina al confirmar tu pedido.</p><button class="button button-dark checkout" id="checkout">Pedir por WhatsApp <span>↗</span></button></div></aside>
   <section class="modal" id="admin-modal" aria-hidden="true"><button class="close-button modal-close" data-close aria-label="Cerrar">×</button><div id="admin-content"></div></section>
+  <section class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-label="Detalles del producto" aria-hidden="true"><button class="close-button product-modal-close" data-close aria-label="Cerrar">×</button><div id="product-modal-content"></div></section>
 </body>
 </html>
+
 
 
 
