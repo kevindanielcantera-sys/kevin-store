@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261023-6">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-  <script defer src="app.js?v=20261023-9"></script>
+  <link rel="stylesheet" href="styles.css?v=20261023-10">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="config.js?v=20261023-10"></script>
+  <script defer src="app.js?v=20261023-10"></script>
 </head>
 <body>
   <div class="announcement">ENVÍOS A TODO COLOMBIA <span>·</span> PEDIDOS DIRECTOS POR WHATSAPP</div>
@@ -31,8 +31,9 @@
       <div class="toolbar"><div class="filters" id="category-filters" aria-label="Filtrar por categoría"></div><div class="search-sort"><label class="search"><span>⌕</span><input id="search-input" type="search" placeholder="Buscar pieza…" aria-label="Buscar producto"></label><select id="availability-filter" aria-label="Filtrar disponibilidad"><option value="all">Toda disponibilidad</option><option value="Disponible">Disponible</option><option value="Bajo pedido">Bajo pedido</option></select><select id="sort-select" aria-label="Ordenar productos"><option value="featured">Destacados</option><option value="price-asc">Precio: menor a mayor</option><option value="price-desc">Precio: mayor a menor</option><option value="name-asc">Nombre: A-Z</option></select></div></div>
       <div class="price-filters"><label>Precio desde <input id="min-price" type="number" inputmode="numeric" min="0" placeholder="$0" aria-label="Precio mínimo"></label><label>Precio hasta <input id="max-price" type="number" inputmode="numeric" min="0" placeholder="Sin límite" aria-label="Precio máximo"></label></div>
       <p class="coming-soon" id="coming-soon" hidden></p>
-      <div class="product-grid" id="product-grid" aria-live="polite"></div><div class="empty-state" id="empty-state" hidden><p></p><button type="button" class="text-link" id="clear-filters">Quitar filtros</button></div>
+      <div class="product-grid" id="product-grid" aria-live="polite" aria-busy="true"></div><div class="empty-state" id="empty-state" hidden><p></p><button type="button" class="text-link" id="clear-filters">Quitar filtros</button><button type="button" class="text-link" id="retry-catalog" hidden>Reintentar</button></div>
     </section>
+    <section class="how-to-buy section" aria-labelledby="how-title"><div class="section-head"><div><p class="eyebrow">UNA COMPRA SENCILLA</p><h2 id="how-title">¿Cómo <em>comprar?</em></h2></div><p class="section-desc">Te acompañamos por WhatsApp para coordinar cada detalle.</p></div><ol class="buy-steps"><li><b>01</b><h3>Elige tu pieza</h3><p>Explora el catálogo y revisa fotos, precio y disponibilidad.</p></li><li><b>02</b><h3>Escríbeme por WhatsApp</h3><p>Confirma el producto y comparte tu nombre y zona de entrega.</p></li><li><b>03</b><h3>Coordina la entrega</h3><p>Te confirmo disponibilidad, entrega y forma de pago antes de cerrar el pedido.</p></li></ol><p class="policy-note">Antes de comprar, consulta por WhatsApp las condiciones aplicables de garantía y cambios.</p></section>
     <section class="manifesto" id="nosotros"><div class="manifesto-mark">K</div><div><p class="eyebrow">UNA FORMA DE SER</p><h2>Menos ruido.<br><em>Más personalidad.</em></h2></div><div class="manifesto-copy"><p>En Kevin Store creemos que un buen detalle puede cambiar cómo te sientes. Reunimos piezas para expresar tu estilo, a tu manera.</p><a href="#catalogo" class="text-link">Explora la colección <span>↗</span></a></div></section>
   </main>
   <footer class="footer"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">K</span><span>KEVIN<span class="brand-light">STORE</span></span></a><p>Tu estilo, en cada detalle. <span>© <span id="year"></span> KEVIN STORE</span></p><a href="#inicio">Volver arriba ↑</a></footer>
@@ -41,5 +42,6 @@
   <section class="modal" id="admin-modal" aria-hidden="true"><button class="close-button modal-close" data-close aria-label="Cerrar administración">×</button><div id="admin-content"></div></section>
   <section class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-label="Detalles del producto" aria-hidden="true" tabindex="-1"><button class="close-button product-modal-close" data-close aria-label="Cerrar detalles">×</button><div id="product-modal-content"></div></section>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <a class="floating-whatsapp" id="floating-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Escribir a Kevin Store por WhatsApp" hidden>WhatsApp <span aria-hidden="true">↗</span></a>
 </body>
 </html>
