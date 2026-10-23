@@ -71,3 +71,24 @@ body{font-size:15px}
 @media(max-width:700px){.buy-steps{grid-template-columns:1fr;gap:10px}.buy-steps li{padding:14px 2px}.buy-steps h3{margin:7px 0}.floating-whatsapp{right:calc(12px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));min-height:50px}.product-description{font-size:13px}.product-title{font-size:14px}}
 @media(min-width:701px){.floating-whatsapp{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Bienvenida con la identidad visual enviada por Kevin */
+.welcome-screen{position:fixed;inset:0;z-index:60;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 44%,#211c12 0%,#100f0d 44%,#070707 82%);opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s ease}
+.welcome-screen.open{opacity:1;visibility:visible}
+.welcome-screen:not(.open){opacity:0;visibility:hidden;pointer-events:none}
+.welcome-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:min(92vw,540px);padding:26px 24px 34px;text-align:center;color:#f6f5f1}
+.welcome-logo{display:block;width:clamp(205px,42vw,330px);height:auto;max-height:40vh;object-fit:contain;margin:0 auto 4px;filter:drop-shadow(0 8px 22px #0009)}
+.welcome-kicker{margin:0 0 9px;color:#d4b45f;font-size:11px;letter-spacing:.24em;font-weight:700}
+.welcome-content h2{margin:0;font:600 clamp(32px,7vw,48px)/1.04 var(--display);letter-spacing:-.055em}
+.welcome-content h2 em{font-style:normal;color:#d1a84f}
+.welcome-message{margin:12px 0 19px;color:#e0d9ca;font-size:15px;line-height:1.6}
+.welcome-enter{min-height:48px;min-width:210px;justify-content:center}
+.welcome-glows{position:absolute;inset:0;pointer-events:none}
+.welcome-glows i{position:absolute;width:clamp(25px,4vw,49px);aspect-ratio:1;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);background:linear-gradient(145deg,#f0d27a55,#9c71201c);box-shadow:0 0 14px 3px #d4a83950;filter:drop-shadow(0 0 9px #d8aa45a6);opacity:.9;animation:gold-glow 3.2s ease-in-out infinite alternate}
+.welcome-glows i:nth-child(1){top:12%;left:13%;animation-delay:-.8s}.welcome-glows i:nth-child(2){top:19%;right:17%;width:38px;animation-delay:-2s}.welcome-glows i:nth-child(3){top:42%;left:5%;width:30px;animation-delay:-1.2s}.welcome-glows i:nth-child(4){top:55%;right:7%;width:52px;animation-delay:-2.5s}.welcome-glows i:nth-child(5){bottom:18%;left:18%;width:42px;animation-delay:-.4s}.welcome-glows i:nth-child(6){bottom:13%;right:21%;width:30px;animation-delay:-1.8s}.welcome-glows i:nth-child(7){top:72%;left:6%;width:25px;animation-delay:-2.8s}
+@keyframes gold-glow{from{opacity:.35;filter:drop-shadow(0 0 3px #c08b2770);transform:scale(.88)}to{opacity:1;filter:drop-shadow(0 0 15px #f1c85c);transform:scale(1.08)}}
+body.welcome-open{overflow:hidden}
+.quality-tag{display:inline-block;margin:5px 0 8px;padding:4px 8px;border:1px solid #c6a455;color:#75571e;font-size:12px;letter-spacing:.03em}
+.product-specs .quality-detail{color:#e7cd8c}
+@media(max-width:600px){.welcome-content{padding:18px 14px 25px}.welcome-logo{width:clamp(190px,55vw,275px);max-height:36vh}.welcome-message{font-size:14px}.welcome-glows i:nth-child(1){left:6%}.welcome-glows i:nth-child(2){right:8%}.welcome-glows i:nth-child(5){left:8%}.welcome-glows i:nth-child(6){right:8%}}
+@media(prefers-reduced-motion:reduce){.welcome-glows i{animation:none;opacity:.8}}
